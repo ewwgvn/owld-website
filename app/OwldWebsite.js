@@ -19,10 +19,10 @@ const FadeIn = ({ children, delay = 0, direction = "up" }) => {
   return <div ref={ref} style={{ opacity: v?1:0, transform: v?"none":t[direction], transition: `opacity 1s ease ${delay}s, transform 1s ease ${delay}s` }}>{children}</div>;
 };
 
-const Img = ({ src, alt, style, aspect }) => {
+const Img = ({ src, alt, style }) => {
   const [hover, setHover] = useState(false);
   return <div style={{ overflow: "hidden", ...style }} onMouseEnter={() => setHover(true)} onMouseLeave={() => setHover(false)}>
-    <img src={src} alt={alt} style={{ width: "100%", display: "block", aspectRatio: aspect, objectFit: "cover", filter: hover ? "brightness(1.05)" : "brightness(0.88)", transform: hover ? "scale(1.04)" : "none", transition: "all 0.7s ease" }} />
+    <img src={src} alt={alt} style={{ width: "100%", display: "block", filter: hover ? "brightness(1.05)" : "brightness(0.88)", transform: hover ? "scale(1.03)" : "none", transition: "all 0.7s ease" }} />
   </div>;
 };
 
@@ -57,11 +57,11 @@ export default function OwldWebsite() {
       <div style={{
         position: "fixed", top: "50%", left: "50%",
         transform: `translate(-50%, -50%) rotate(${sy * 0.015}deg)`,
-        width: "65vh", height: "65vh",
+        width: "150vmax", height: "150vmax",
         backgroundImage: "url('/images/toono.png')", backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat",
-        opacity: 0.1, filter: "invert(0.9) brightness(1.2)",
+        opacity: 0.07, filter: "invert(1) brightness(2)",
+        mixBlendMode: "screen",
         pointerEvents: "none", zIndex: 0,
-        transition: "opacity 2s ease"
       }} />
 
       {/* NAV */}
@@ -137,7 +137,7 @@ export default function OwldWebsite() {
           <FadeIn delay={0.3} direction="left"><div style={{ border: "1px solid rgba(220,215,205,0.04)", padding: "40px 28px" }}>
             <div style={{ fontSize: 8, letterSpacing: 5, color: "rgba(139,115,85,0.4)", textTransform: "uppercase", marginBottom: 20 }}>Дизайнер</div>
             <div style={{ fontSize: 26, fontWeight: 300, letterSpacing: 4, marginBottom: 14 }}>Галт Билгүүн</div>
-            <div style={{ fontSize: 13, color: "rgba(220,215,205,0.22)", lineHeight: 2.2 }}>Улаанбаатар хот<br/>Сөүл хот<br/>Ханян Их Сургууль<br/>Чорос овог — Ууль тотем</div>
+            <div style={{ fontSize: 13, color: "rgba(220,215,205,0.22)", lineHeight: 2.2 }}>Ууль сүлдтэй Чорос овгийн<br/>Улаанбаатар хот<br/>Сөүл хот<br/>Ханян Их Сургууль</div>
             <div style={{ marginTop: 20, paddingTop: 16, borderTop: "1px solid rgba(220,215,205,0.03)", fontSize: 12, color: "rgba(220,215,205,0.15)", lineHeight: 1.8 }}>
               <div>@eww.gvn</div><div>galtbilguun0@gmail.com</div>
             </div>
@@ -160,19 +160,19 @@ export default function OwldWebsite() {
 
           {/* Hero poster — contained, not full bleed */}
           <FadeIn><div style={{ position: "relative", overflow: "hidden", marginBottom: 50 }}>
-            <img src="/images/spirit-poster.jpg" alt="Spirit of Nomad" style={{ width: "100%", display: "block", filter: "brightness(0.82)", maxHeight: "55vh", objectFit: "cover" }} />
+            <img src="/images/spirit-poster.jpg" alt="Spirit of Nomad" style={{ width: "100%", display: "block", filter: "brightness(0.82)" }} />
             <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 50%, rgba(8,8,8,0.9))" }} />
           </div></FadeIn>
 
           {/* Lookbook — refined grid with breathing room */}
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 20 }}>
-            <FadeIn><Img src="/images/spirit-look1.jpg" alt="Look 1" aspect="3/4" style={{ maxHeight: 520 }} /></FadeIn>
-            <FadeIn delay={0.15}><Img src="/images/spirit-look2.jpg" alt="Look 2" aspect="3/4" style={{ maxHeight: 520 }} /></FadeIn>
+            <FadeIn><Img src="/images/spirit-look1.jpg" alt="Look 1" /></FadeIn>
+            <FadeIn delay={0.15}><Img src="/images/spirit-look2.jpg" alt="Look 2" /></FadeIn>
           </div>
 
           {/* Closeup + text — balanced */}
           <div style={{ display: "grid", gridTemplateColumns: "0.55fr 0.45fr", gap: 30, marginBottom: 50, alignItems: "center" }}>
-            <FadeIn><Img src="/images/spirit-closeup.jpg" alt="Detail" aspect="4/5" style={{ maxHeight: 440 }} /></FadeIn>
+            <FadeIn><Img src="/images/spirit-closeup.jpg" alt="Detail" /></FadeIn>
             <FadeIn delay={0.2}><div style={{ padding: "20px 0" }}>
               <p style={{ fontSize: 14, lineHeight: 2.2, color: "rgba(220,215,205,0.32)", fontWeight: 300, marginBottom: 24 }}>Монгол уламжлалт хувцасны бүтэц, дүрс дүрслэлийг орчин үеийн нүдээр дахин тайлбарласан. Нүүдэлчний ул мөрийг мөрдөж, хувцас бүтээсэн.</p>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
@@ -183,12 +183,12 @@ export default function OwldWebsite() {
 
           {/* Sitting look — single centered image */}
           <FadeIn><div style={{ maxWidth: 600, margin: "0 auto 40px" }}>
-            <Img src="/images/spirit-look3.jpg" alt="Look 3" aspect="3/4" />
+            <Img src="/images/spirit-look3.jpg" alt="Look 3" />
           </div></FadeIn>
 
           {/* Second poster — contained */}
-          <FadeIn><div style={{ overflow: "hidden", maxHeight: "50vh" }}>
-            <img src="/images/spirit-poster2.jpg" alt="Spirit of Nomad" style={{ width: "100%", display: "block", filter: "brightness(0.85)", objectFit: "cover", maxHeight: "50vh" }} />
+          <FadeIn><div style={{ overflow: "hidden" }}>
+            <img src="/images/spirit-poster2.jpg" alt="Spirit of Nomad" style={{ width: "100%", display: "block", filter: "brightness(0.85)" }} />
           </div></FadeIn>
         </div>
 
@@ -200,8 +200,8 @@ export default function OwldWebsite() {
             <div style={{ fontSize: 15, fontStyle: "italic", color: "rgba(220,215,205,0.2)" }}>Between Night & Dawn</div>
           </div></FadeIn>
           <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
-            <FadeIn><Img src="/images/liminal-look1.jpg" alt="Night" aspect="3/4" style={{ maxHeight: 500 }} /></FadeIn>
-            <FadeIn delay={0.15}><Img src="/images/liminal-look2.jpg" alt="Dawn" aspect="3/4" style={{ maxHeight: 500 }} /></FadeIn>
+            <FadeIn><Img src="/images/liminal-look1.jpg" alt="Night" /></FadeIn>
+            <FadeIn delay={0.15}><Img src="/images/liminal-look2.jpg" alt="Dawn" /></FadeIn>
           </div>
           <FadeIn delay={0.2}><p style={{ fontSize: 13, lineHeight: 2, color: "rgba(220,215,205,0.22)", fontWeight: 300, maxWidth: 550, marginTop: 24 }}>Шөнө ба үүрийн хоёр гэрлийн хооронд. Торго, даавуу, угаасан жинс — шөнөөс үүр рүү шилжих тэнгэрийн өнгө.</p></FadeIn>
         </div>
