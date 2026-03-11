@@ -53,18 +53,19 @@ export default function OwldWebsite() {
   return (
     <div style={{ background: "#080808", color: "#DCD7CD", fontFamily: "'Times New Roman', Times, serif", overflowX: "hidden" }}>
 
-      {/* TOONO — Fixed, white lines on transparent, smooth rotating on scroll */}
+      {/* TOONO — Fixed, CSS animation rotation (GPU accelerated, no jank) */}
       <div style={{
         position: "fixed", top: "50%", left: "50%",
-        transform: `translate(-50%, -50%) rotate(${sy * 0.012}deg)`,
         width: "150vmax", height: "150vmax",
+        marginLeft: "-75vmax", marginTop: "-75vmax",
         display: "flex", alignItems: "center", justifyContent: "center",
         pointerEvents: "none", zIndex: 0,
-        transition: "transform 0.3s ease-out",
+        animation: "toono-spin 120s linear infinite",
+        willChange: "transform",
       }}>
         <img src="/images/toono.png" alt="" style={{
           width: "100%", height: "100%", objectFit: "contain",
-          opacity: 0.12,
+          opacity: 0.1,
         }} />
       </div>
 
@@ -78,7 +79,8 @@ export default function OwldWebsite() {
         display: "flex", alignItems: "center", justifyContent: "space-between"
       }}>
         <div onClick={() => go("hero")} style={{ display: "flex", alignItems: "center", gap: 10, cursor: "pointer" }}>
-          <Star size={12} /><span style={{ fontSize: 16, letterSpacing: 8, fontWeight: 300 }}>owl'd</span>
+          <img src="/images/mongol-pattern.png" alt="" style={{ width: 18, height: 18, objectFit: "contain", opacity: 0.7 }} />
+          <span style={{ fontSize: 16, letterSpacing: 8, fontWeight: 300 }}>owl'd</span>
         </div>
         <div style={{ display: "flex", gap: 2 }}>
           {[["philosophy","Философи"],["about","Тухай"],["portfolio","Бүтээл"],["shop","Дэлгүүр"],["contact","Холбоо"]].map(([id,l]) => (
@@ -266,6 +268,7 @@ export default function OwldWebsite() {
 
       <style>{`
         @keyframes pulse{0%,100%{opacity:.08}50%{opacity:.2}}
+        @keyframes toono-spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}
         input::placeholder{color:rgba(220,215,205,0.1)}
         ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:#080808}::-webkit-scrollbar-thumb{background:rgba(220,215,205,0.08);border-radius:3px}
         @media(max-width:768px){nav>div:last-child{display:none}section{padding-left:16px!important;padding-right:16px!important}h1{font-size:50px!important;letter-spacing:14px!important}h2{font-size:26px!important}}
