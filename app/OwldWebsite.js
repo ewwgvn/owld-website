@@ -53,16 +53,19 @@ export default function OwldWebsite() {
   return (
     <div style={{ background: "#080808", color: "#DCD7CD", fontFamily: "'Times New Roman', Times, serif", overflowX: "hidden" }}>
 
-      {/* TOONO — Fixed background, always visible, rotating on scroll */}
+      {/* TOONO — Fixed, white lines on transparent, rotating on scroll */}
       <div style={{
         position: "fixed", top: "50%", left: "50%",
         transform: `translate(-50%, -50%) rotate(${sy * 0.015}deg)`,
         width: "150vmax", height: "150vmax",
-        backgroundImage: "url('/images/toono.png')", backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat",
-        opacity: 0.07, filter: "invert(1) brightness(2)",
-        mixBlendMode: "screen",
+        display: "flex", alignItems: "center", justifyContent: "center",
         pointerEvents: "none", zIndex: 0,
-      }} />
+      }}>
+        <img src="/images/toono.png" alt="" style={{
+          width: "100%", height: "100%", objectFit: "contain",
+          opacity: 0.12,
+        }} />
+      </div>
 
       {/* NAV */}
       <nav style={{
