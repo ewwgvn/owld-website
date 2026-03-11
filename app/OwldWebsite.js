@@ -53,6 +53,17 @@ export default function OwldWebsite() {
   return (
     <div style={{ background: "#080808", color: "#DCD7CD", fontFamily: "'Times New Roman', Times, serif", overflowX: "hidden" }}>
 
+      {/* TOONO — Fixed background, always visible, rotating on scroll */}
+      <div style={{
+        position: "fixed", top: "50%", left: "50%",
+        transform: `translate(-50%, -50%) rotate(${sy * 0.015}deg)`,
+        width: "65vh", height: "65vh",
+        backgroundImage: "url('/images/toono.png')", backgroundSize: "contain", backgroundPosition: "center", backgroundRepeat: "no-repeat",
+        opacity: 0.1, filter: "invert(0.9) brightness(1.2)",
+        pointerEvents: "none", zIndex: 0,
+        transition: "opacity 2s ease"
+      }} />
+
       {/* NAV */}
       <nav style={{
         position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
@@ -80,7 +91,6 @@ export default function OwldWebsite() {
 
       {/* HERO */}
       <section id="hero" style={{ height: "100vh", position: "relative", overflow: "hidden" }}>
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "url('/images/toono.png')", backgroundSize: "70vh", backgroundPosition: "center", backgroundRepeat: "no-repeat", opacity: ld ? 0.05 : 0, transition: "opacity 3s ease 0.5s", transform: `scale(1.15) rotate(${sy * 0.008}deg)` }} />
         <div style={{ position: "absolute", inset: 0, backgroundImage: "url('/images/owl-key-visual.png')", backgroundSize: "cover", backgroundPosition: "center", opacity: ld ? 0.15 : 0, transition: "opacity 2.5s ease", transform: `translateY(${sy * 0.1}px)`, mixBlendMode: "lighten" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, rgba(8,8,8,0.15), rgba(8,8,8,0.5) 45%, rgba(8,8,8,1) 96%)" }} />
         <div style={{ position: "absolute", inset: 0, opacity: 0.035, mixBlendMode: "overlay", backgroundImage: "url(\"data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E\")", backgroundSize: "180px" }} />
@@ -98,8 +108,6 @@ export default function OwldWebsite() {
         <FadeIn><div style={{ fontSize: 9, letterSpacing: 7, color: "rgba(220,215,205,0.14)", textTransform: "uppercase", marginBottom: 50 }}>Философи</div></FadeIn>
         <FadeIn delay={0.1}><h2 style={{ fontSize: 42, fontWeight: 300, letterSpacing: 5, marginBottom: 24, lineHeight: 1.4 }}>Мартагдаж буй өв соёлоо сэргээх</h2></FadeIn>
         <FadeIn delay={0.2}><p style={{ fontSize: 16, lineHeight: 2.2, color: "rgba(220,215,205,0.38)", fontWeight: 300, maxWidth: 720, marginBottom: 80 }}>Дэлхий хурдацтай өөрчлөгдөж байх зуур мянган жилийн турш уламжлагдаж ирсэн нүүдэлчдийн сүнслэг өв чимээгүйхэн алга болж байна. owl'd энэ чимээгүй байдлыг эсэргүүцдэг.</p></FadeIn>
-
-        <FadeIn><div style={{ textAlign: "center", margin: "0 auto 80px", opacity: 0.06 }}><img src="/images/toono.png" alt="" style={{ width: 180, filter: "invert(0.85) brightness(1.5)" }} /></div></FadeIn>
 
         <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 18 }}>
           {[
@@ -143,58 +151,63 @@ export default function OwldWebsite() {
           <FadeIn><div style={{ fontSize: 9, letterSpacing: 7, color: "rgba(220,215,205,0.14)", textTransform: "uppercase", marginBottom: 16 }}>Бүтээлүүд</div></FadeIn>
         </div>
 
-        {/* SPIRIT OF NOMAD — Full bleed poster */}
-        <FadeIn><div style={{ position: "relative", overflow: "hidden", cursor: "pointer" }}>
-          <img src="/images/spirit-poster.jpg" alt="Spirit of Nomad" style={{ width: "100%", display: "block", filter: "brightness(0.8)" }} />
-          <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 40%, rgba(8,8,8,1))" }} />
-          <div style={{ position: "absolute", bottom: 50, left: 50 }}>
-            <div style={{ fontSize: 9, letterSpacing: 5, color: "rgba(139,115,85,0.6)", textTransform: "uppercase", marginBottom: 8 }}>Collection 01 — 2025</div>
-            <h3 style={{ fontSize: 44, fontWeight: 300, letterSpacing: 6 }}>Spirit of Nomad</h3>
-          </div>
-        </div></FadeIn>
+        {/* SPIRIT OF NOMAD */}
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 40px" }}>
+          <FadeIn><div style={{ marginBottom: 50 }}>
+            <div style={{ fontSize: 9, letterSpacing: 5, color: "rgba(139,115,85,0.5)", textTransform: "uppercase", marginBottom: 8 }}>Collection 01 — 2025</div>
+            <h3 style={{ fontSize: 36, fontWeight: 300, letterSpacing: 5 }}>Spirit of Nomad</h3>
+          </div></FadeIn>
 
-        {/* Spirit lookbook grid — editorial asymmetric */}
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "30px 40px 0" }}>
-          {/* Row 1: big + small */}
-          <div style={{ display: "grid", gridTemplateColumns: "1.4fr 0.6fr", gap: 8, marginBottom: 8 }}>
-            <FadeIn><Img src="/images/spirit-look1.jpg" alt="Look 1" aspect="3/4" /></FadeIn>
-            <FadeIn delay={0.15}><Img src="/images/spirit-closeup.jpg" alt="Closeup" aspect="3/4" /></FadeIn>
+          {/* Hero poster — contained, not full bleed */}
+          <FadeIn><div style={{ position: "relative", overflow: "hidden", marginBottom: 50 }}>
+            <img src="/images/spirit-poster.jpg" alt="Spirit of Nomad" style={{ width: "100%", display: "block", filter: "brightness(0.82)", maxHeight: "55vh", objectFit: "cover" }} />
+            <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to bottom, transparent 50%, rgba(8,8,8,0.9))" }} />
+          </div></FadeIn>
+
+          {/* Lookbook — refined grid with breathing room */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 20, marginBottom: 20 }}>
+            <FadeIn><Img src="/images/spirit-look1.jpg" alt="Look 1" aspect="3/4" style={{ maxHeight: 520 }} /></FadeIn>
+            <FadeIn delay={0.15}><Img src="/images/spirit-look2.jpg" alt="Look 2" aspect="3/4" style={{ maxHeight: 520 }} /></FadeIn>
           </div>
-          {/* Row 2: three equal */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: 8, marginBottom: 8 }}>
-            <FadeIn><Img src="/images/spirit-look3.jpg" alt="Look 3" aspect="2/3" /></FadeIn>
-            <FadeIn delay={0.1}><Img src="/images/spirit-look2.jpg" alt="Look 2" aspect="2/3" /></FadeIn>
-            <FadeIn delay={0.2}>
-              <div style={{ background: "rgba(220,215,205,0.015)", display: "flex", flexDirection: "column", justifyContent: "center", padding: "40px 28px", aspectRatio: "2/3" }}>
-                <p style={{ fontSize: 15, lineHeight: 2.2, color: "rgba(220,215,205,0.35)", fontWeight: 300, marginBottom: 24 }}>Монгол уламжлалт хувцасны бүтэц, дүрс дүрслэлийг орчин үеийн нүдээр дахин тайлбарласан. Нүүдэлчний ул мөрийг мөрдөж, хувцас бүтээсэн.</p>
-                <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
-                  {["Darkwear","Leather","Wool","2 Looks"].map(t => <span key={t} style={{ fontSize: 8, letterSpacing: 3, padding: "4px 12px", border: "1px solid rgba(220,215,205,0.06)", color: "rgba(220,215,205,0.18)" }}>{t}</span>)}
-                </div>
+
+          {/* Closeup + text — balanced */}
+          <div style={{ display: "grid", gridTemplateColumns: "0.55fr 0.45fr", gap: 30, marginBottom: 50, alignItems: "center" }}>
+            <FadeIn><Img src="/images/spirit-closeup.jpg" alt="Detail" aspect="4/5" style={{ maxHeight: 440 }} /></FadeIn>
+            <FadeIn delay={0.2}><div style={{ padding: "20px 0" }}>
+              <p style={{ fontSize: 14, lineHeight: 2.2, color: "rgba(220,215,205,0.32)", fontWeight: 300, marginBottom: 24 }}>Монгол уламжлалт хувцасны бүтэц, дүрс дүрслэлийг орчин үеийн нүдээр дахин тайлбарласан. Нүүдэлчний ул мөрийг мөрдөж, хувцас бүтээсэн.</p>
+              <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
+                {["Darkwear","Leather","Wool","2 Looks"].map(t => <span key={t} style={{ fontSize: 8, letterSpacing: 3, padding: "4px 12px", border: "1px solid rgba(220,215,205,0.06)", color: "rgba(220,215,205,0.18)" }}>{t}</span>)}
               </div>
-            </FadeIn>
+            </div></FadeIn>
           </div>
-          {/* Poster 2 */}
-          <FadeIn><div style={{ overflow: "hidden" }}>
-            <img src="/images/spirit-poster2.jpg" alt="Spirit of Nomad" style={{ width: "100%", display: "block", filter: "brightness(0.85)" }} />
+
+          {/* Sitting look — single centered image */}
+          <FadeIn><div style={{ maxWidth: 600, margin: "0 auto 40px" }}>
+            <Img src="/images/spirit-look3.jpg" alt="Look 3" aspect="3/4" />
+          </div></FadeIn>
+
+          {/* Second poster — contained */}
+          <FadeIn><div style={{ overflow: "hidden", maxHeight: "50vh" }}>
+            <img src="/images/spirit-poster2.jpg" alt="Spirit of Nomad" style={{ width: "100%", display: "block", filter: "brightness(0.85)", objectFit: "cover", maxHeight: "50vh" }} />
           </div></FadeIn>
         </div>
 
         {/* LIMINAL STEPPE */}
-        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "120px 40px 0" }}>
+        <div style={{ maxWidth: 1100, margin: "0 auto", padding: "100px 40px 0" }}>
           <FadeIn><div style={{ marginBottom: 40 }}>
             <div style={{ fontSize: 9, letterSpacing: 5, color: "rgba(139,115,85,0.45)", textTransform: "uppercase", marginBottom: 8 }}>Collection 02 — 2024</div>
-            <h3 style={{ fontSize: 38, fontWeight: 300, letterSpacing: 5, marginBottom: 4 }}>Liminal Steppe</h3>
+            <h3 style={{ fontSize: 36, fontWeight: 300, letterSpacing: 5, marginBottom: 4 }}>Liminal Steppe</h3>
             <div style={{ fontSize: 15, fontStyle: "italic", color: "rgba(220,215,205,0.2)" }}>Between Night & Dawn</div>
           </div></FadeIn>
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 8 }}>
-            <FadeIn><Img src="/images/liminal-look1.jpg" alt="Night" aspect="3/4" /></FadeIn>
-            <FadeIn delay={0.15}><Img src="/images/liminal-look2.jpg" alt="Dawn" aspect="3/4" /></FadeIn>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
+            <FadeIn><Img src="/images/liminal-look1.jpg" alt="Night" aspect="3/4" style={{ maxHeight: 500 }} /></FadeIn>
+            <FadeIn delay={0.15}><Img src="/images/liminal-look2.jpg" alt="Dawn" aspect="3/4" style={{ maxHeight: 500 }} /></FadeIn>
           </div>
-          <FadeIn delay={0.2}><p style={{ fontSize: 14, lineHeight: 2, color: "rgba(220,215,205,0.25)", fontWeight: 300, maxWidth: 600, marginTop: 28 }}>Шөнө ба үүрийн хоёр гэрлийн хооронд. Торго, даавуу, угаасан жинс — шөнөөс үүр рүү шилжих тэнгэрийн өнгө.</p></FadeIn>
+          <FadeIn delay={0.2}><p style={{ fontSize: 13, lineHeight: 2, color: "rgba(220,215,205,0.22)", fontWeight: 300, maxWidth: 550, marginTop: 24 }}>Шөнө ба үүрийн хоёр гэрлийн хооронд. Торго, даавуу, угаасан жинс — шөнөөс үүр рүү шилжих тэнгэрийн өнгө.</p></FadeIn>
         </div>
 
-        {/* OWL CLUB poster full bleed */}
-        <FadeIn><div style={{ marginTop: 100 }}>
+        {/* OWL CLUB poster — contained */}
+        <FadeIn><div style={{ maxWidth: 700, margin: "80px auto 0" }}>
           <img src="/images/brand-poster.png" alt="OWL CLUB" style={{ width: "100%", display: "block" }} />
         </div></FadeIn>
       </section>
